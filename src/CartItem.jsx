@@ -19,6 +19,8 @@ const CartItem = ({ onContinueShopping }) => {
   const handleDecrement = (item) => {
    if (item.quantity > 1){
     dispatch(updateQuantity({name: item.name, quantity: item.quantity - 1}));
+   } else {
+    dispatch(removeItem(item))
    }
   };
 
@@ -28,9 +30,16 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    return (parseFloat(item.cost.slice(1)) * item.quantity).toFixed(2);
+    return cart.reduce((total, item) => total + parseFloat(item.cost.slice(1)) * item.quantity, 0).toFixed(2);
   };
 
+  const handleContinueShopping = (e) => {
+    onContinueShopping(e);
+  }
+
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference')
+  }
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
