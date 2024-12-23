@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { addItem } from './CartSlice';  
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, removeItem, updateQuantity } from './CartSlice';  
 import './ProductList.css'
 import CartItem from './CartItem';
 function ProductList() {
@@ -8,15 +8,20 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
+    const cartItems = useSelector((state) => state.cart.items);
 
     const handleAddToCart = (product) => {
         dispatch(addItem(product));
-        setAddedToCart((prevState) => ({
-           ...prevState,
-           [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-         }));
+      };
+    
+    const handleRemoveItem = (name) => {
+        dispatch(removeItem(name));
       };
 
+    const handleUpdateQuantity = (name, quantity) => {
+        dispatch(updateQuantity({name, quantity}));
+      };
+    
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -300,7 +305,14 @@ const handlePlantsClick = (e) => {
 
         </div>
  ) :  (
-    <CartItem onContinueShopping={handleContinueShopping}/>
+    <div className = "cart">
+        <CartItem 
+            items={cartItems}
+            onRemoveItem={handleRemoveItem}
+            onUpdateQuantity={handleUpdateQuantity}
+            onContinueShopping={handleContinueShopping}
+        />
+    </div>
 )}
     </div>
     );
