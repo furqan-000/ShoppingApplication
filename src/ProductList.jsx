@@ -249,7 +249,7 @@ const handlePlantsClick = (e) => {
   };
 
   const handleAddToCart = (product) => {
-    dispatch(addItem(product));
+    
     setAddedToCart((prevState) => ({
        ...prevState,
        [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
@@ -278,7 +278,7 @@ const handlePlantsClick = (e) => {
         </div>
         {!showCart? (
         <div className="product-grid">
-            
+
             {plantsArray.map((category, index) => (
             <div key={index}>
             <h1><div>{category.category}</div></h1>
