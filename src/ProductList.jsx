@@ -11,6 +11,8 @@ function ProductList() {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.items);
 
+    const totalQuantity = useSelector(state => state.cart.items.reduce((total, item) => total + item.quantity, 0));
+
     const handleAddToCart = (product) => {
         dispatch(addItem(product));
       };
@@ -260,7 +262,8 @@ const handlePlantsClick = (e) => {
     setShowCart(false); // Hide the cart when navigating to About Us
 };
 
-   const handleContinueShopping = () => {
+   const handleContinueShopping = (e) => {
+    e.preventDefault();
     setShowCart(false);
   };
 
