@@ -216,7 +216,8 @@ body {
   }
   
   .product-button.added-to-cart {
-    background-color: grey; /* Grey when product is added */
+    /* background-color: grey; Grey when product is added */
+    background-color: grey;
   }
   @media (max-width: 1200px) {
     .product-card {
