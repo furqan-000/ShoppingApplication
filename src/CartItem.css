@@ -30,12 +30,14 @@
 .cart-item-cost {
   margin-bottom: 10px;
   margin-top: 10px;
+  color: black;
 }
 
 .cart-item-quantity {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
+  color: black;
 }
 
 .cart-item-button {
